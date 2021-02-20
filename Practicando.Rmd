@@ -1,0 +1,26 @@
+---
+title: "Practicando"
+author: "Fernando"
+date: "20/2/2021"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+library(tidyverse)
+library(ggplot2)
+library(dplyr)
+library(gapminder)
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+## Primeros pasos
+
+En este documentos se plasman los primeros pasos del uso de Git en RStudio. Para este primer ejercicio se hace uso de la base de datos **gapminder**.
+
+```{r}
+gapminder %>%
+  filter(country == 'Mexico')
+```
+
+

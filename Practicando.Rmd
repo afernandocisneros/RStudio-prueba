@@ -55,7 +55,6 @@ gapminder %>%
   filter(lifeExp >= 82.6)
 ```
 
-
  
 ```{r}
 gapminder %>%
@@ -91,6 +90,10 @@ plot(x = year,
 peliculas <- data.frame(year,disney)
 
 kable(peliculas)
+
+ggplot(data = peliculas,
+       mapping = aes(x = year, y = disney)) +
+  geom_point()
 ```
 
 

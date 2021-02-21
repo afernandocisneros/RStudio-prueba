@@ -98,6 +98,97 @@ ggplot(data = peliculas,
 
 
 
+```{r}
+
+gapminderpt <- gapminder %>%
+  filter(country == 'Portugal') 
+  
+plot(x = gapminderpt$year,
+     y = gapminderpt$lifeExp)
+
+ggplot(data = gapminderpt,
+       mapping = aes(x = year, y = lifeExp )) +
+  geom_line()
+
+```
+
+
+
+```{r}
+
+gapminderpt <- gapminder %>%
+  filter(country == 'Portugal') 
+  
+ggplot(data = gapminderpt,
+       mapping = aes(x = year, y = lifeExp )) +
+  geom_point() +
+  geom_smooth(method = 'lm')
+
+```
+
+
+
+## Graficos de barras
+
+
+```{r}
+gapminder2007 <- gapminder %>%
+  filter(year == 2007)
+
+kable(gapminder2007)
+
+
+barplot(table(gapminder2007$continent))
+
+ggplot(data = gapminder2007,
+       mapping = aes(x = continent )) +
+       geom_bar() 
+```
+
+
+
+```{r}
+gapminder2007 <- gapminder2007 %>%
+  mutate(lifeExp_label = case_when(
+    
+    lifeExp < 50 ~ 'baja',
+    lifeExp < 70 ~ 'media',
+    TRUE ~ 'alta'
+    
+  ))
+
+p <- ggplot(data = gapminder2007,
+            mapping = aes(x = continent, 
+                          fill = lifeExp_label))
+
+p + geom_bar(position = 'stack', stat = 'count')
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

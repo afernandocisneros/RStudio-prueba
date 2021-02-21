@@ -9,6 +9,7 @@ output: pdf_document
 library(tidyverse)
 library(ggplot2)
 library(dplyr)
+library(knitr)
 library(gapminder)
 knitr::opts_chunk$set(echo = TRUE)
 ```
@@ -29,5 +30,74 @@ gapminder %>%
   ggplot(aes(x=lifeExp, y=country )) + 
   geom_point()
 ```
+
+```{r}
+gapminder %>%
+  mutate(pop_m = round(pop / 1000000, 2))
+```
+
+
+Ordenar datos
+
+```{r}
+gapminder %>%
+  filter(year == 2007 & continent == "Americas") %>%
+  arrange(gdpPercap) %>%
+  ggplot(aes(x=gdpPercap, y=country)) + 
+  geom_point()
+```
+
+```{r}
+gapminder %>%
+  summarise(max_edv = max(lifeExp ))
+
+gapminder %>%
+  filter(lifeExp >= 82.6)
+```
+
+
+ 
+```{r}
+gapminder %>%
+  group_by(year) %>%
+  summarise(mean_edv = mean(lifeExp) )
+```
+
+```{r}
+gapminder %>%
+  group_by(continent, year) %>%
+  summarise(sum_pop = sum(as.numeric(pop)),
+            mean_pop = mean(pop),
+            mean_edv = mean(lifeExp),
+            n_paises =n()) %>%
+  ggplot(aes(x = year,
+             y = mean_edv,
+             color = continent)) +
+  geom_line()
+```
+
+
+## Uso de ggplot2
+
+```{r}
+year <- c('2010', '2011', '2012', '2013', '2014', '2015', '2016', '2017', '2018')
+disney <- c(11, 13, 11, 8, 12, 11, 12, 8, 10)
+
+plot(x = year,
+     y = disney)
+```
+
+```{r}
+peliculas <- data.frame(year,disney)
+
+kable(peliculas)
+```
+
+
+
+
+
+
+
 
 
